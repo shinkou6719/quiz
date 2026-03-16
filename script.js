@@ -7,11 +7,28 @@ set,
 onValue
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
-let playerId = localStorage.getItem("playerId");
+let playerName = localStorage.getItem("playerName");
 
-if(!playerId){
-playerId = "player_" + Math.floor(Math.random()*100000);
-localStorage.setItem("playerId", playerId);
+function saveName(){
+
+const input = document.getElementById("nameInput");
+
+playerName = input.value;
+
+localStorage.setItem("playerName", playerName);
+
+document.getElementById("nameBlock").style.display = "none";
+
+}
+
+if(playerName){
+
+const block = document.getElementById("nameBlock");
+
+if(block){
+block.style.display = "none";
+}
+
 }
 
 let currentQuestion = 0;
@@ -39,7 +56,7 @@ showQuestion();
 // отправка ответа
 window.sendAnswer = function(answer){
 
-set(ref(db, "answers/" + currentQuestion + "/" + playerId),{
+set(ref(db, "answers/" + currentQuestion + "/" + playerName),{
 answer: answer
 });
 
@@ -74,11 +91,16 @@ answersButtons.style.display = "none";
 }
 
 
-// HOST красивый вывод ответов
+// HOST компактный вывод ответов
 
 const answersDiv = document.getElementById("answers");
 
-if(answersDiv){
+if (answersDiv) {
+
+answersDiv.style.fontSize = "13px";
+answersDiv.style.lineHeight = "1.3";
+answersDiv.style.maxHeight = "80vh";
+answersDiv.style.overflowY = "auto";
 
 onValue(ref(db,"answers"),(snapshot)=>{
 
@@ -88,13 +110,19 @@ answersDiv.innerHTML = "";
 
 if(!data) return;
 
-for(const questionIndex in data){
+// сортируем вопросы чтобы новые были сверху
+const sortedQuestions = Object.keys(data).sort((a,b)=>b-a);
+
+for(const questionIndex of sortedQuestions){
 
 const block = document.createElement("div");
 
-block.style.marginBottom = "25px";
+block.style.marginBottom = "15px";
 
-const title = document.createElement("h3");
+const title = document.createElement("div");
+
+title.style.fontWeight = "600";
+title.style.fontSize = "14px";
 
 title.innerText =
 "Вопрос " + (parseInt(questionIndex)+1) + ": " +
@@ -106,7 +134,10 @@ for(const player in data[questionIndex]){
 
 const answer = data[questionIndex][player].answer;
 
-const row = document.createElement("p");
+const row = document.createElement("div");
+
+row.style.fontSize = "13px";
+row.style.marginLeft = "8px";
 
 row.innerText =
 player + " → " + answer;
