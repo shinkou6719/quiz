@@ -64,6 +64,57 @@ gap:25px;
 
 }
 
+/* блок ввода имени */
+
+#nameBlock{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:10px;
+
+margin-bottom:10px;
+
+}
+
+/* поле имени */
+
+#nameInput{
+
+padding:10px 14px;
+
+border-radius:12px;
+border:none;
+
+width:200px;
+
+font-size:16px;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+
+}
+
+/* кнопка OK */
+
+#nameBlock button{
+
+width:120px;
+
+padding:10px;
+
+font-size:16px;
+
+border:none;
+border-radius:14px;
+
+background:#FFFFF0;
+
+box-shadow:0 6px 12px rgba(0,0,0,0.12);
+
+cursor:pointer;
+
+}
+
 /* вопрос */
 
 h1{
@@ -71,6 +122,16 @@ h1{
 font-size:24px;
 text-align:center;
 color:#333;
+
+}
+
+/* счетчик */
+
+.counter{
+
+text-align:center;
+font-size:14px;
+color:#666;
 
 }
 
@@ -84,17 +145,9 @@ gap:12px;
 
 }
 
-.counter{
+/* кнопки ответов */
 
-text-align:center;
-font-size:14px;
-color:#666;
-
-}
-
-/* кнопки */
-
-button{
+.answers button{
 
 width:100%;
 padding:18px;
@@ -126,7 +179,7 @@ transform:scale(0.96);
 
 @media (hover:hover){
 
-button:hover{
+.answers button:hover{
 
 transform:scale(1.03);
 

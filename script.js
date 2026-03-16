@@ -8,34 +8,19 @@ onValue
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
 let playerName = localStorage.getItem("playerName");
-
-function saveName(){
-
-const input = document.getElementById("nameInput");
-
-playerName = input.value;
-
-localStorage.setItem("playerName", playerName);
-
-document.getElementById("nameBlock").style.display = "none";
-
-}
-
-if(playerName){
-
-const block = document.getElementById("nameBlock");
-
-if(block){
-block.style.display = "none";
-}
-
-}
-
 let currentQuestion = 0;
 
 const questionTitle = document.getElementById("question");
 const counter = document.getElementById("counter");
 const answersButtons = document.getElementById("answersButtons");
+
+if(!playerName){
+
+if(questionTitle) questionTitle.style.display = "none";
+if(counter) counter.style.display = "none";
+if(answersButtons) answersButtons.style.display = "none";
+
+}
 
 function showQuestion(){
 
@@ -50,7 +35,50 @@ counter.innerText =
 
 }
 
+function saveName(){
+
+const input = document.getElementById("nameInput");
+
+playerName = input.value;
+
+if(!playerName) return;
+
+localStorage.setItem("playerName", playerName);
+
+document.getElementById("nameBlock").style.display = "none";
+
+if(questionTitle) questionTitle.style.display = "block";
+if(counter) counter.style.display = "block";
+if(answersButtons) answersButtons.style.display = "block";
+
 showQuestion();
+
+}
+
+window.saveName = saveName;
+
+
+if(playerName){
+
+const block = document.getElementById("nameBlock");
+
+if(block){
+block.style.display = "none";
+}
+
+const input = document.getElementById("nameInput");
+
+if(input){
+input.value = playerName;
+}
+
+if(questionTitle) questionTitle.style.display = "block";
+if(counter) counter.style.display = "block";
+if(answersButtons) answersButtons.style.display = "block";
+
+showQuestion();
+
+}
 
 
 // отправка ответа
@@ -110,7 +138,6 @@ answersDiv.innerHTML = "";
 
 if(!data) return;
 
-// сортируем вопросы чтобы новые были сверху
 const sortedQuestions = Object.keys(data).sort((a,b)=>b-a);
 
 for(const questionIndex of sortedQuestions){
