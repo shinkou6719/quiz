@@ -136,6 +136,14 @@ const data = snapshot.val();
 
 answersDiv.innerHTML = "";
 
+const title = document.createElement("h2");
+title.innerText = "Ответы игроков";
+
+title.style.fontSize = "16px";
+title.style.marginBottom = "10px";
+
+answersDiv.appendChild(title);
+
 if(!data) return;
 
 const sortedQuestions = Object.keys(data).sort((a,b)=>b-a);
@@ -167,7 +175,7 @@ row.style.fontSize = "13px";
 row.style.marginLeft = "8px";
 
 row.innerText =
-player + " → " + answer;
+player + ": " + answer;
 
 block.appendChild(row);
 
