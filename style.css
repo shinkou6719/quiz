@@ -1,0 +1,135 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, sans-serif;
+}
+
+body{
+
+height:100vh;
+
+background: linear-gradient(
+180deg,
+#ffd6c9,
+#ffbfae
+);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+padding:20px;
+
+position:relative;
+overflow:hidden;
+
+}
+
+/* цветочки */
+
+body::before{
+
+content:"";
+position:absolute;
+
+top:-40px;
+right:-40px;
+
+width:350px;
+height:350px;
+
+background-image:url("flowers.png");
+background-size:contain;
+background-repeat:no-repeat;
+
+transform: rotate(25deg);
+
+opacity:0.35;
+
+pointer-events:none;
+
+}
+
+/* контейнер */
+
+.container{
+
+width:100%;
+max-width:420px;
+
+display:flex;
+flex-direction:column;
+gap:25px;
+
+}
+
+/* вопрос */
+
+h1{
+
+font-size:24px;
+text-align:center;
+color:#333;
+
+}
+
+/* блок кнопок */
+
+.answers{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+.counter{
+
+text-align:center;
+font-size:14px;
+color:#666;
+
+}
+
+/* кнопки */
+
+button{
+
+width:100%;
+padding:18px;
+
+font-size:18px;
+
+border:none;
+border-radius:18px;
+
+background:#FFFFF0;
+
+box-shadow:0 6px 12px rgba(0,0,0,0.12);
+
+cursor:pointer;
+
+transition:all 0.2s;
+
+}
+
+/* нажатие */
+
+button:active{
+
+transform:scale(0.96);
+
+}
+
+/* hover для компьютера */
+
+@media (hover:hover){
+
+button:hover{
+
+transform:scale(1.03);
+
+}
+
+}

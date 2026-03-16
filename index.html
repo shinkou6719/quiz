@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Player</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="counter" id="counter"></div>
+
+<h1 id="question">Загрузка...</h1>
+
+<div class="answers" id="answersButtons">
+
+<button onclick="sendAnswer('точно нет')">Точно нет</button>
+<button onclick="sendAnswer('нет')">Нет</button>
+<button onclick="sendAnswer('может быть')">Может быть</button>
+<button onclick="sendAnswer('да')">Да</button>
+<button onclick="sendAnswer('точно да')">Точно да</button>
+
+</div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
