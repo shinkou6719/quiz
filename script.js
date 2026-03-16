@@ -74,7 +74,8 @@ answersButtons.style.display = "none";
 }
 
 
-// HOST
+// HOST красивый вывод ответов
+
 const answersDiv = document.getElementById("answers");
 
 if(answersDiv){
@@ -83,7 +84,40 @@ onValue(ref(db,"answers"),(snapshot)=>{
 
 const data = snapshot.val();
 
-answersDiv.innerHTML = JSON.stringify(data,null,2);
+answersDiv.innerHTML = "";
+
+if(!data) return;
+
+for(const questionIndex in data){
+
+const block = document.createElement("div");
+
+block.style.marginBottom = "25px";
+
+const title = document.createElement("h3");
+
+title.innerText =
+"Вопрос " + (parseInt(questionIndex)+1) + ": " +
+questions[questionIndex];
+
+block.appendChild(title);
+
+for(const player in data[questionIndex]){
+
+const answer = data[questionIndex][player].answer;
+
+const row = document.createElement("p");
+
+row.innerText =
+player + " → " + answer;
+
+block.appendChild(row);
+
+}
+
+answersDiv.appendChild(block);
+
+}
 
 });
 
